@@ -48,7 +48,7 @@ Es un herramienta desarrollada por el grupo de desarrolladores “Software-Devel
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b62c449e43f24a86803f524a67d373ea)](https://app.codacy.com/gh/Software-Development-Industries/ECI-Horarios/dashboard)
 
  
-## **Arquitecura y Diseño **
+## **Arquitecura y Diseño**
 
 ### Diagrama de Clase
 
