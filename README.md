@@ -70,16 +70,8 @@ Es un herramienta desarrollada por el grupo de desarrolladores “Software-Devel
 
 [Presione Aqui para revisar El Manual de Usuario]()
 
-### Historias de Usuario
 
-* Acontinuacion se vera los diagramas de caso de uso definidos para este proyecto:
-    *   Consultas Operativas
-       ![texto cualquiera por si no carga la imagen](https://github.com/Software-Development-Industries/ECI-Horarios/blob/master/Img/Consultas%20Operativas%20ECI-horarios.png)
-    *   Funciones
-        ![texto cualquiera por si no carga la imagen](https://github.com/Software-Development-Industries/ECI-Horarios/blob/master/Img/Funciones%20ECI-Horarios.png)
-        
-
- # **Tecnologías Utilizadas**
+ ## **Tecnologías Utilizadas**
 
 - **Prime Faces(FRONT)**: Fue la librería utilizada para todos los componentes relacionados con el Front-End de la plataforma. Esta fue utilizada ya que es una librería ligera y que esta encapsulada en un único JAR, el que no requiere que se haga instalación de terceros para que esta sea puesta en marcha.
 
@@ -90,20 +82,20 @@ Es un herramienta desarrollada por el grupo de desarrolladores “Software-Devel
 
 #### **Integrantes**:
 
-- Federico Barrios Menenes,
-- Paula Guevara Sanchez.
+- Eduard Arias.
+- David Coronado.
 - Fabián Ramírez Pinto.
 
 ### **Descripcion de la metodologia**
 
 La planeación de los sprint se realizó en la primera reunión oficial de comienzo del proyecto, en donde se planteó los Sprint a trabajar y una generalidades del proyecto. Luego de eso, en la semana siguiente se comenzó a definir Sprint por Sprint de cada una de las tareas y se realizó una estimación de cuando tiempo tomaría la realización del proyecto y en cuanto tiempo se tendría si se cumpliera con todas las actividades del Sprint en las fechas establecidas.
 
-En total fueron 3 Sprint, y todo el grupo se puso de acuerdo para la asiganacion de tareas y cuáles de ellas se deberían hacer primero. Estableciendo tareas que se deberían realizar antes y que no saldrían si no se hicieran unas antes. Así fue como se estableció el orden y como se desarrolló el proyecto.	
+En total fueron 3 Sprint, y todo el grupo se puso de acuerdo para la asiganacion de tareas y cuáles de ellas se deberían hacer primero. Estableciendo tareas que se deberían realizar antes y que no saldrían si no se hicieran unas antes. Se hizo la utilizacion de controlador de versiones de GitHub para verificar el progreso del proyecto y de cada uno de los estudiantes, asi como el uso de la herramienta Taiga, para el control de Sprints y de tareas.
 
 
 ## **Taiga**
 
-Mediante este enlace se podra acceder a la Herramienta Taiga y conocer el proceso del Proyecto. [Taiga THE-DEVELOPERS-Labinfo](https://tree.taiga.io/project/federico29-historial-de-equipos-labinfo/timeline/).
+Mediante este enlace se podra acceder a la Herramienta Taiga y conocer el proceso del Proyecto. [Taiga Software Development Industries--ECI Horarios](https://tree.taiga.io/project/fabimauri47-eci-horarios/timeline).
 
 
 ### ***SPRINTS y release-burndown chart***
