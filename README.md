@@ -36,14 +36,14 @@ Es un herramienta desarrollada por el grupo de desarrolladores “Software-Devel
 
 
 
-# HerokuApp
+# Despliegue en HerokuApp
 >[![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://eci-horarios.herokuapp.com/)
 
-## CircleCI
+## Integración Continua con CircleCI
 >[![CircleCI](https://circleci.com/gh/The-Developers-Eci/2020-2-PROYCVDS-THE_DEVELOPERS_ECI.svg?style=svg)](https://app.circleci.com/pipelines/github/Software-Development-Industries/ECI-Horarios)
 >
 
-## Codacy
+## Calidad del Codigo con Codacy
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b62c449e43f24a86803f524a67d373ea)](https://app.codacy.com/gh/Software-Development-Industries/ECI-Horarios/dashboard)
 
