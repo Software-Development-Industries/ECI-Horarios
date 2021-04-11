@@ -39,4 +39,10 @@ public class PersistenceManagerDAO implements PersistenceManager {
 		return false;
 	}
 
+
+	@Override
+	public boolean checkLogin(String user, String contraseña) throws PersistenceException {
+		return usuario.checkLogin(user, contraseña);
+	}
+
 }
