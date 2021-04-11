@@ -1,11 +1,22 @@
+create table Login (
+	nombre_usuario varchar,
+	contraseña varchar,
+	ultimo_ingreso timestamp,
+	
+	primary key (nombre_usuario)
+	
+);
+
 create table Usuario (
 	nombre varchar,
 	edad int,
 	id int,
 	tipo_id char,
 	correo varchar not null,
+	login varchar,
 	
-	primary key (id, tipo_id)
+	primary key (id, tipo_id),
+	foreign key (login) references Login (nombre_usuario)
 );
 
 create table Area_Encargada (
