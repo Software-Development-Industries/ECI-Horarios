@@ -62,8 +62,8 @@ Es un herramienta desarrollada por el grupo de desarrolladores “Software-Devel
 ![texto cualquiera por si no carga la imagen](https://github.com/Software-Development-Industries/ECI-Horarios/blob/master/Img/Diagramas/Funciones.png)
 
 ### Diagrama de Despliegue
-[Presione Aqui para revisar El Diagrama De Despliegue](https://github.com/Software-Development-Industries/ECI-Horarios/tree/master/design/app)
-![texto cualquiera por si no carga la imagen](https://github.com/Software-Development-Industries/ECI-Horarios/blob/master/Img/Diagramas/ECI_Horarios%20Diagrama%20clases.png)
+[Presione Aqui para revisar El Diagrama De Despliegue](https://github.com/Software-Development-Industries/ECI-Horarios/tree/master/design/Diagrama%20de%20Despliegue)
+![texto cualquiera por si no carga la imagen](https://github.com/Software-Development-Industries/ECI-Horarios/blob/master/Img/Diagramas/ECI%20Horarios%20Diagrama%20De%20Despliegue.png)
 
 ### Diagrama de Casos de Uso
 [Presione Aqui para revisar El Diagrama De Casos de usos](https://github.com/Software-Development-Industries/ECI-Horarios/blob/master/design/CasosDeUso/ProyectCasosDeUso.asta)
