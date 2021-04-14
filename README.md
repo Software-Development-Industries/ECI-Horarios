@@ -16,7 +16,7 @@
 |Diego Alfonso Prieto	|Product Owner    |
 |Eduard Arias	|Scrum Master    |
 |Fabian Ramírez|Developer   |
-|David Coronado |Developer   |
+
  
 
  
