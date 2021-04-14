@@ -172,7 +172,7 @@ Es un herramienta desarrollada por el grupo de desarrolladores “Software-Devel
     * Estadisticas.
     * Modificación Grupos.
 
-    ![Funciones admin](https://github.com/Software-Development-Industries/ECI-Horarios/blob/master/Img/Manual%20de%20Usuario/pre%20y%20inscrip.png)
+    ![Funciones admin](https://github.com/Software-Development-Industries/ECI-Horarios/blob/master/Img/Manual%20de%20Usuario/preinscripcion.png)
 
 
 # **Descripción del proceso**:
