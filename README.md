@@ -70,8 +70,8 @@ Es un herramienta desarrollada por el grupo de desarrolladores “Software-Devel
 ![texto cualquiera por si no carga la imagen](https://github.com/Software-Development-Industries/ECI-Horarios/blob/master/Img/Diagramas/Consultas%20Operativas.png)
 
 ### Diagrama de Componentes
-[Presione Aqui para revisar El Diagrama De Componentes](https://github.com/Software-Development-Industries/ECI-Horarios/tree/master/design/FrontEnd/WireFrames)
-![texto cualquiera por si no carga la imagen](https://github.com/Software-Development-Industries/ECI-Horarios/blob/master/design/FrontEnd/WireFrames/menu%20inscripcion%20horarios.png)
+[Presione Aqui para revisar El Diagrama De Componentes](https://github.com/Software-Development-Industries/ECI-Horarios/tree/master/design/Diagrama%20de%20Componentes)
+![texto cualquiera por si no carga la imagen](https://github.com/Software-Development-Industries/ECI-Horarios/blob/master/Img/Diagramas/ECI-Horarios%20Diagrama%20Componentes.png)
 
 
 
