@@ -136,9 +136,19 @@ create table Plan_Estudio_Estudiante (
 );
 
 create table Registro_Materias (
+	estudiante_id int,
+	tipo_id_est char,
+	materia_id char(4),
+	superada bool,
+
+	primary key (estudiante_id, tipo_id_est, materia_id),
+	foreign key (estudiante_id, tipo_id_est) references Estudiante (id, tipo_id),
+	foreign key (materia_id) references Materia (sigla)
+);
+
+create table Plan_Materia (
 	plan_id int,
 	materia_id char(4),
-	superada bool
 
 	primary key (plan_id, materia_id),
 	foreign key (plan_id) references Plan_Estudio (id),
@@ -153,7 +163,7 @@ create table Horario (
 	inscripcion_id int not null,
 	
 	primary key (numero_horario, inscripcion_id),
-	foreign key (inscripcion_id) references Inscipcion (id)
+	foreign key (inscripcion_id) references Inscripcion (id)
 );
 
 create table Horario_Materia (
