@@ -27,7 +27,7 @@ Es un herramienta desarrollada por el grupo de desarrolladores “Software Devel
 La plataforma esta planteada como una herramienta nueva para realizar horario, la cual tendrá como plus la planeación de varios planes de horario de preinscripción, con la opción de poderlos inscribir apenas el turno de inscripción de horarios este disponible, para ello contara con opciones visuales que le permitirán establecer cuales de las opciones de planes se le acomodan acorde al estado actual de inscripción. 
 
 
-![texto cualquiera por si no carga la imagen](https://github.com/Software-Development-Industries/ECI-Horarios/blob/master/design/FrontEnd/WireFrames/menu%20principal%20eci%20horarios.png)
+![texto cualquiera por si no carga la imagen](https://github.com/Software-Development-Industries/ECI-Horarios/blob/master/Img/Manual%20de%20Usuario/Menu%20Principal.png)
 
 
  ## Descripción del Producto
