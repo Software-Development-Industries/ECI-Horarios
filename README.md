@@ -78,7 +78,7 @@ Es un herramienta desarrollada por el grupo de desarrolladores “Software-Devel
 
 [Presione Aqui para revisar El Manual de Usuario](https://github.com/Software-Development-Industries/ECI-Horarios/blob/master/Manual%20de%20Usuario%20Software%20DEV%20IND--ECI%20Horarios.pdf)
 
-![texto cualquiera por si no carga la imagen](https://github.com/Software-Development-Industries/ECI-Horarios/blob/master/Img/Sprints/manual%20usuario%20imag.png)
+![texto cualquiera por si no carga la imagen](https://github.com/Software-Development-Industries/ECI-Horarios/blob/master/Img/Manual%20de%20Usuario/portada%20manual.png)
 
   ### 1. **Acceso al sitio web**
   - Ingrese al navegador de preferencia y escriba en la barra de direcciones el siguiente URL de acceso:
