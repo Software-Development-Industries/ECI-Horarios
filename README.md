@@ -8,7 +8,6 @@
   
 - **Integrantes**:
   - Eduard Arias Rincón
-  - David Coronado Gómez
   - Fabian Ramírez Pinto
 
 ### Asignación de roles:
