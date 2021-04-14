@@ -239,7 +239,7 @@ Se presento un avance aceptable para el Sprint 1, en donde se pudo ver la defini
 
 #### ***Burdown Chart***
 
-![texto cualquiera por si no carga la imagen](https://github.com/Software-Development-Industries/ECI-Horarios/blob/master/Img/Sprints/Sprint%202%20BurdownChart%202.png)
+![texto cualquiera por si no carga la imagen](https://github.com/Software-Development-Industries/ECI-Horarios/blob/master/Img/Sprints/sprint%202%20BurdownChart%202.png)
 
 #### ***Backlog***
 
