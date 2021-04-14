@@ -269,5 +269,3 @@ Para este Sprint 3 se comenzaron a ver los rezagos de los sprint anteriores, .
 ![texto cualquiera por si no carga la imagen]()
 
  ## **Tecnologías Utilizadas**
-
-       
