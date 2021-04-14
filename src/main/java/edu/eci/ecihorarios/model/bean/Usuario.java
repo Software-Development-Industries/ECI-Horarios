@@ -6,10 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
-public abstract class Usuario {
+public class Usuario {
 
 	private String nombre;
-	private String identificacion;
+	private int edad;
+	private int identificacion;
 	private char tipo;
 	private String correo;
 	private String nombreUsuario;
