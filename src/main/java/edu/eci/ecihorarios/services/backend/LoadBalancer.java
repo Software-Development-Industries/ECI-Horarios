@@ -8,16 +8,21 @@ import edu.eci.ecihorarios.backend.PersistenceManager;
 public class LoadBalancer {
 	
 	private static LoadBalancer lb = new LoadBalancer();
+	private static final int MANAGERS_POOL = 10;
 	
 	public static PersistenceManager getNextManager() {
 		return lb.next();
+	}
+	
+	public static int getManagersAmount() {
+		return MANAGERS_POOL;
 	}
 	
 	
 	private Queue<PersistenceManager> managers;
 	
 	private LoadBalancer() {
-		managers = new ArrayBlockingQueue<PersistenceManager>(10);
+		managers = new ArrayBlockingQueue<PersistenceManager>(MANAGERS_POOL);
 	}
 	
 	private PersistenceManager next() {
