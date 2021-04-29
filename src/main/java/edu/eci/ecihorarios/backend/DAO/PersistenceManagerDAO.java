@@ -2,10 +2,13 @@ package edu.eci.ecihorarios.backend.DAO;
 
 import java.sql.Connection;
 
+import org.springframework.stereotype.Component;
+
 import edu.eci.ecihorarios.backend.PersistenceManager;
 import edu.eci.ecihorarios.exception.backend.PersistenceException;
 import edu.eci.ecihorarios.services.backend.Connector;
 
+@Component
 public class PersistenceManagerDAO implements PersistenceManager {
 	
 	public synchronized static Connection getConnection() throws PersistenceException {
