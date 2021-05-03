@@ -5,26 +5,21 @@ login = (function (){
 	
 	var _checkLogin = async function(email, pass) {
 		let isLoggued = false;
-		const data = await fetch(
+		await fetch(
             url + "/app/check-login",
             {
-                method: 'POST',
+                method: "POST",
                 body: JSON.stringify({
-                    "email": email,
-                    "pass": pass
+                    email: email,
+                    pass: pass
                 }),
                 headers: {
-                    "Content-type": "application/json"
-                }
+      				"Content-type": "application/json; charset=UTF-8"
+   				}
             }
         )
-		.then((response) => {
-			return response.json();
-		})
-		.then((data) => {
-			isLoggued = data;
-			return data;
-		});
+		.then((response) => response.json())
+		.then((data) => isLoggued = data);
 		
 		return isLoggued;
 	}
@@ -33,8 +28,9 @@ login = (function (){
 	return {
 		
 		checkLogin: function() {
+			
 			if (_checkLogin($("#email").val(), $("#pass").val())) {
-				window.location.href = "http://www.w3schools.com";
+				window.location.href = url+"/main.html";
 			} else {
 				alert("Usuario o contraseña no válidos");
 			}

@@ -1,4 +1,4 @@
-package edu.eci.ecihorarios.backend.DAO;
+package edu.eci.ecihorarios.persistence.DAO;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.eci.ecihorarios.exception.backend.PersistenceException;
+import edu.eci.ecihorarios.exception.persistence.PersistenceException;
 import edu.eci.ecihorarios.model.bean.Area;
 import edu.eci.ecihorarios.model.bean.Estudiante;
 import edu.eci.ecihorarios.model.bean.Materia;

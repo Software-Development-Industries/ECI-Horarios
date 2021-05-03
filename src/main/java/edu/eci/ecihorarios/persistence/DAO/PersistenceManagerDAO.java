@@ -1,12 +1,12 @@
-package edu.eci.ecihorarios.backend.DAO;
+package edu.eci.ecihorarios.persistence.DAO;
 
 import java.sql.Connection;
 
 import org.springframework.stereotype.Component;
 
-import edu.eci.ecihorarios.backend.PersistenceManager;
-import edu.eci.ecihorarios.exception.backend.PersistenceException;
-import edu.eci.ecihorarios.services.backend.Connector;
+import edu.eci.ecihorarios.exception.persistence.PersistenceException;
+import edu.eci.ecihorarios.persistence.PersistenceManager;
+import edu.eci.ecihorarios.services.persistence.Connector;
 
 @Component
 public class PersistenceManagerDAO implements PersistenceManager {

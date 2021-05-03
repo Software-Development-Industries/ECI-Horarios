@@ -1,6 +1,6 @@
-package edu.eci.ecihorarios.backend;
+package edu.eci.ecihorarios.persistence;
 
-import edu.eci.ecihorarios.exception.backend.PersistenceException;
+import edu.eci.ecihorarios.exception.persistence.PersistenceException;
 
 public interface PersistenceManager {
 	

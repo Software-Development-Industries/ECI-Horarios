@@ -1,9 +1,9 @@
-package edu.eci.ecihorarios.services.backend;
+package edu.eci.ecihorarios.services.persistence;
 
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
-import edu.eci.ecihorarios.backend.PersistenceManager;
+import edu.eci.ecihorarios.persistence.PersistenceManager;
 
 public class LoadBalancer {
 	
