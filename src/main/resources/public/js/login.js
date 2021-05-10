@@ -19,7 +19,12 @@ login = (function (){
             }
         )
 		.then((response) => response.json())
-		.then((data) => isLoggued = data);
+		.then((data) => {
+			isLoggued=data;
+		});
+		
+		sessionStorage.setItem("hey", "brother");
+		alert(sessionStorage.getItem("hey"));
 		
 		return isLoggued;
 	}

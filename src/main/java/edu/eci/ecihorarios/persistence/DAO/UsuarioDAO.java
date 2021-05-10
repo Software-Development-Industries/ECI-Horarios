@@ -110,9 +110,22 @@ public class UsuarioDAO {
 		}
 	}
 	
-	public boolean checkLogin(String usuario, String contraseña) throws PersistenceException {
-		try (ResultSet rs = PersistenceManagerDAO.getConnection().createStatement().executeQuery(String.format("select * from public.login where nombre_usuario='%s' and contraseña='%s'", usuario, contraseña))) {
-			return rs.next();
+	public Usuario checkLogin(String usuario, String contraseña) throws PersistenceException {
+		try (ResultSet rs = PersistenceManagerDAO.getConnection().createStatement().executeQuery(String.format("select us.* from public.usuario as us join public.login as lo on lo.nombre_usuario = us.login \n"
+				+ "where lo.nombre_usuario='%s' and lo.contraseña='%s'", usuario, contraseña))) {
+			Usuario user = new Usuario();
+			if (rs.next()) {
+				user.setNombre(rs.getString("nombre"));
+				user.setEdad(rs.getInt("edad"));
+				user.setIdentificacion(rs.getInt("id"));
+				user.setTipo(rs.getString("tipo_id").charAt(0));
+				user.setCorreo(rs.getString("correo"));
+				user.setNombreUsuario(rs.getString("login"));
+			} else {
+				throw new PersistenceException("Usuario no encontrado");
+			}
+
+			return user;
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		}

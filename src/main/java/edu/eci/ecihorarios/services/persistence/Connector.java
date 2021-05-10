@@ -11,7 +11,9 @@ import edu.eci.ecihorarios.exception.persistence.PersistenceException;
 public class Connector {
 	
 	private static final int CONNECTIONS = LoadBalancer.getManagersAmount();
-	private static final String uri = "postgres://pqhssvszaprcti:c1417a8a0d6964fbfdf33697c225b2de113e9bf6272a7de6c8a2604c42771ffd@ec2-3-222-11-129.compute-1.amazonaws.com:5432/d3a9ac4u7urutl";
+	private static final String url = "jdbc:postgresql://ec2-3-222-11-129.compute-1.amazonaws.com:5432/d3a9ac4u7urutl";
+	private static final String user = "pqhssvszaprcti";
+	private static final String pass = "c1417a8a0d6964fbfdf33697c225b2de113e9bf6272a7de6c8a2604c42771ffd";
 	private static Connector _instance = null;
 	
 	
@@ -34,14 +36,21 @@ public class Connector {
 	}
 	
 	private void prepareConnections() throws PersistenceException{
-		for (int i=0; i<CONNECTIONS; i++) {
-			try {
-				connections.add(DriverManager.getConnection(uri));
-			} catch (SQLException e) {
-				throw new PersistenceException(e.getMessage());
+		try {
+			Class.forName("org.postgresql.Driver");
+		
+			for (int i=0; i<CONNECTIONS; i++) {
+				try {
+					connections.add(DriverManager.getConnection(url,user,pass));
+				} catch (SQLException e) {
+					throw new PersistenceException(e.getMessage());
+				}
 			}
+			currentConnection = 0;
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		currentConnection = 0;
 	}
 	
 	private Connection getNextConnection() {

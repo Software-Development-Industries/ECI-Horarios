@@ -1,4 +1,4 @@
-package edu.eci.ecihorarios.controller;
+package edu.eci.ecihorarios.model.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;

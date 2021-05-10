@@ -5,6 +5,7 @@ import java.sql.Connection;
 import org.springframework.stereotype.Component;
 
 import edu.eci.ecihorarios.exception.persistence.PersistenceException;
+import edu.eci.ecihorarios.model.bean.Usuario;
 import edu.eci.ecihorarios.persistence.PersistenceManager;
 import edu.eci.ecihorarios.services.persistence.Connector;
 
@@ -50,7 +51,7 @@ public class PersistenceManagerDAO implements PersistenceManager {
 
 
 	@Override
-	public boolean checkLogin(String user, String contraseña) throws PersistenceException {
+	public Usuario login(String user, String contraseña) throws PersistenceException {
 		return usuario.checkLogin(user, contraseña);
 	}
 

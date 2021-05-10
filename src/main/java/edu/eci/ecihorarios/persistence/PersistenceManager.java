@@ -1,6 +1,7 @@
 package edu.eci.ecihorarios.persistence;
 
 import edu.eci.ecihorarios.exception.persistence.PersistenceException;
+import edu.eci.ecihorarios.model.bean.Usuario;
 
 public interface PersistenceManager {
 	
@@ -8,6 +9,6 @@ public interface PersistenceManager {
 	public boolean agregarPlan() throws PersistenceException;
 	
 	//login
-	public boolean checkLogin(String usuario, String contraseña) throws PersistenceException;
+	public Usuario login(String usuario, String contraseña) throws PersistenceException;
 
 }

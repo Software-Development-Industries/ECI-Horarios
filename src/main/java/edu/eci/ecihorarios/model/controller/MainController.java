@@ -1,4 +1,4 @@
-package edu.eci.ecihorarios.controller;
+package edu.eci.ecihorarios.model.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import edu.eci.ecihorarios.exception.app.AppException;
+import edu.eci.ecihorarios.services.server.ServiceManager;
+
 @RestController
 public class MainController {
 
@@ -20,7 +23,14 @@ public class MainController {
 	public ResponseEntity<?> checkLogin(@RequestBody String req) {
 		JsonObject json = JsonParser.parseString(req).getAsJsonObject();
 		System.out.println(json);
-		return new ResponseEntity<>(true, HttpStatus.OK);
+		System.out.println(Thread.currentThread().getId());
+		try {
+			return new ResponseEntity<>(ServiceManager.getNextWorker().checkLogin(json.get("email").getAsString(), json.get("pass").getAsString()), HttpStatus.OK);
+		} catch (AppException appEx) {
+			return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+		} catch (Exception ex) {
+			return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	
