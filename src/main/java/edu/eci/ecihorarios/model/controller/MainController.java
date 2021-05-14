@@ -17,19 +17,29 @@ import edu.eci.ecihorarios.services.server.ServiceManager;
 public class MainController {
 
 	
-	@RequestMapping(value="/app/check-login", 
+	@RequestMapping(value="/app/student-login", 
 					method=RequestMethod.POST,
 					consumes="application/json")
 	public ResponseEntity<?> checkLogin(@RequestBody String req) {
 		JsonObject json = JsonParser.parseString(req).getAsJsonObject();
-		System.out.println(json);
-		System.out.println(Thread.currentThread().getId());
 		try {
-			return new ResponseEntity<>(ServiceManager.getNextWorker().checkLogin(json.get("email").getAsString(), json.get("pass").getAsString()), HttpStatus.OK);
+			return new ResponseEntity<>(ServiceManager.getNextWorker().studentLogin(json.get("email").getAsString(), json.get("pass").getAsString()), HttpStatus.OK);
 		} catch (AppException appEx) {
 			return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	public ResponseEntity<?> getStudentByUsername(@RequestBody String req) {
+		JsonObject json = JsonParser.parseString(req).getAsJsonObject();
+		try {
+			return new ResponseEntity<>(ServiceManager.getNextWorker().getStudentByUsername(json.get("username").getAsString()) , HttpStatus.OK);
+		} catch (AppException appEx) {
+			return new ResponseEntity<>("No existe el usuario", HttpStatus.BAD_REQUEST);
+		} catch (Exception ex) {
+			return new ResponseEntity<>(ex.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	

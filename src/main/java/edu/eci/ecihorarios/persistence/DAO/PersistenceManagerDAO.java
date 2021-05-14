@@ -5,18 +5,18 @@ import java.sql.Connection;
 import org.springframework.stereotype.Component;
 
 import edu.eci.ecihorarios.exception.persistence.PersistenceException;
+import edu.eci.ecihorarios.model.bean.Estudiante;
 import edu.eci.ecihorarios.model.bean.Usuario;
 import edu.eci.ecihorarios.persistence.PersistenceManager;
 import edu.eci.ecihorarios.services.persistence.Connector;
 
-@Component
-public class PersistenceManagerDAO implements PersistenceManager {
+@Component(value="DAO")
+public class PersistenceManagerDAO implements PersistenceManager <Estudiante>{
 	
 	public synchronized static Connection getConnection() throws PersistenceException {
 		return Connector.getInstance().getConnection();
 	}
 	
-	private UsuarioDAO usuario;
 	private AdministradorDAO admin;
 	private EstudianteDAO estudiante;
 	private InscripcionDAO inscripcion;
@@ -26,7 +26,6 @@ public class PersistenceManagerDAO implements PersistenceManager {
 	private GrupoDAO grupo;
 	
 	public PersistenceManagerDAO() {
-		usuario = new UsuarioDAO();
 		admin = new AdministradorDAO();
 		estudiante = new EstudianteDAO();
 		inscripcion = new InscripcionDAO();
@@ -51,8 +50,15 @@ public class PersistenceManagerDAO implements PersistenceManager {
 
 
 	@Override
-	public Usuario login(String user, String contraseña) throws PersistenceException {
-		return usuario.checkLogin(user, contraseña);
+	public Estudiante studentLogin(String user, String contraseña) throws PersistenceException {
+		return estudiante.checkLogin(user, contraseña);
 	}
+
+
+	@Override
+	public Estudiante getStudentByUsername(String username) throws PersistenceException {
+		return estudiante.getByUsername(username);
+	}
+
 
 }

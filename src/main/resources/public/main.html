@@ -5,10 +5,32 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<link rel="icon" type="image/jpg" href="./image/favicon.ico"/>
+		<link rel="stylesheet" href="css/main.css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
 		<title>ECI Horarios</title>
 	</head>
 	<body>
-		<script>alert(sessionStorage.getItem("hey"))</script>
+		<script>
+			if (!main.verifyLogin()) {
+				alert("INVALID ACCESS");
+				window.location.replace("/");
+			}
+		</script>
+		<div class="content">
+			<div class="navbar">
+			  <a href="/">Inicio</a>
+			  <a href="#">Inscripción</a>
+			  <a href="#">Consultar Materias</a>
+			  <a href="#" onclick="main.logout()">Salir</a>
+			</div>
+			
+			<!-- Page content -->
+			<div class="main">
+			  Hello There!
+			</div>
+		</div>
+		
 	</body>
 
 </html>

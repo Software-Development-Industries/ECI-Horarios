@@ -9,7 +9,7 @@ import edu.eci.ecihorarios.model.bean.Admin;
 import edu.eci.ecihorarios.model.bean.Area;
 import edu.eci.ecihorarios.model.bean.Usuario;
 
-public class AdministradorDAO extends UsuarioDAO{
+public class AdministradorDAO extends UsuarioDAO <Admin>{
 
 	public void agregar(Admin newAdmin, String password) throws PersistenceException {
 		agregar((Usuario)newAdmin, password);
@@ -80,6 +80,18 @@ public class AdministradorDAO extends UsuarioDAO{
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		}
+	}
+
+	@Override
+	public Admin checkLogin(String usuario, String contraseña) throws PersistenceException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Admin getByUsername(String username) throws PersistenceException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

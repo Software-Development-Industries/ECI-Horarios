@@ -1,12 +1,13 @@
 login = (function (){
 	
 	
-	var url = "http://localhost:8080";
+	var port = 80;
+	var url = "http://localhost:"+port;
 	
-	var _checkLogin = async function(email, pass) {
+	var _studentLogin = async function(email, pass) {
 		let isLoggued = false;
 		await fetch(
-            url + "/app/check-login",
+            url + "/app/student-login",
             {
                 method: "POST",
                 body: JSON.stringify({
@@ -23,21 +24,43 @@ login = (function (){
 			isLoggued=data;
 		});
 		
-		sessionStorage.setItem("hey", "brother");
-		alert(sessionStorage.getItem("hey"));
+		if (isLoggued) {
+			sessionStorage.setItem("currentUser", email);
+			sessionStorage.setItem("loggued", true);
+		}
 		
 		return isLoggued;
+	}
+	
+	var _isLoggued = function() {
+		let isLogguedVer = sessionStorage.getItem("loggued");
+		return isLogguedVer != null && isLogguedVer === String(true); 
 	}
 	
 	
 	return {
 		
-		checkLogin: function() {
+		studentLogin: function() {
 			
-			if (_checkLogin($("#email").val(), $("#pass").val())) {
+			if (_isLoggued()) {
 				window.location.href = url+"/main.html";
 			} else {
-				alert("Usuario o contraseña no válidos");
+				_studentLogin($("#email").val(), $("#pass").val()).then((isLoggued) => {
+					if (isLoggued) {
+						// Make it like this so can be optimized in the future
+						sessionStorage.setItem("loggued", true);
+						alert("YOU ARE LOGGUED NOW");
+						window.location.href = url+"/main.html";
+					} else {
+						alert("Usuario o contraseña no válidos");
+					}
+				})
+			}
+		},
+		
+		isLoggued: function() {
+			if (_isLoggued()) {
+				window.location.href = url+"/main.html";
 			}
 		}
 		

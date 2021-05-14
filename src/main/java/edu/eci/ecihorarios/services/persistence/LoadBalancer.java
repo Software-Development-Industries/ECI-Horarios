@@ -3,10 +3,16 @@ package edu.eci.ecihorarios.services.persistence;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import edu.eci.ecihorarios.persistence.PersistenceManager;
+import edu.eci.ecihorarios.persistence.DAO.PersistenceManagerDAO;
 
+@Service
 public class LoadBalancer {
 	
 	private static LoadBalancer lb = null;
@@ -27,9 +33,16 @@ public class LoadBalancer {
 	private Queue<PersistenceManager> managers;
 	
 	@Autowired
+	@Qualifier("DAO")
 	private PersistenceManager reference;
 	
 	private LoadBalancer() {
+		reference = new PersistenceManagerDAO();
+		init();
+	}
+	
+	@PostConstruct
+	private void init() {
 		managers = new ArrayBlockingQueue<PersistenceManager>(MANAGERS_POOL);
 		for (int i=0; i<getManagersAmount(); i++) {
 			try {

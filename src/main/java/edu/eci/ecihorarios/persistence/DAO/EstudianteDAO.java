@@ -13,7 +13,7 @@ import edu.eci.ecihorarios.model.bean.Materia;
 import edu.eci.ecihorarios.model.bean.PlanEstudio;
 import edu.eci.ecihorarios.model.bean.Usuario;
 
-public class EstudianteDAO extends UsuarioDAO{
+public class EstudianteDAO extends UsuarioDAO <Estudiante>{
 
 	
 	public void agregar(Estudiante newStudent, String password) throws PersistenceException{
@@ -50,6 +50,27 @@ public class EstudianteDAO extends UsuarioDAO{
 		}
 	}
 	
+	public Estudiante getByUsername(String username) throws PersistenceException {
+		try (PreparedStatement st = PersistenceManagerDAO.getConnection().prepareStatement("select us.* from public.usuario us join public.estudiante est "
+				+ "on us.id = est.id where us.nombre_usuario = ?")) {
+			st.setString(1, username);
+			
+			ResultSet rs = st.executeQuery();
+			Estudiante est = new Estudiante();
+			while (rs.next()) {
+				est.setNombre(rs.getString("nombre"));
+				est.setEdad(rs.getInt("edad"));
+				est.setIdentificacion(rs.getInt("id"));
+				est.setTipo(rs.getString("tipo_id").charAt(0));
+				est.setCorreo(rs.getString("correo"));
+				est.setNombreUsuario(rs.getString("login"));
+			}
+			
+			return est;
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		}
+	}
 	
 	public Estudiante consultar(String correo) throws PersistenceException {
 		try (PreparedStatement st = PersistenceManagerDAO.getConnection().prepareStatement("select us.* from public.usuario us join public.estudiante est "
@@ -136,7 +157,7 @@ public class EstudianteDAO extends UsuarioDAO{
 				+ "where est.id = reg.estudiante_id and reg.materia_id = mat.sigla and mat.area_id = ar.codigo and est.id = ? and est.tipo_id = ?")) {
 			st.setInt(1, estudiante.getIdentificacion());
 			st.setString(2, String.valueOf(estudiante.getTipo()));
-			
+		
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				materias.add(new Materia(
@@ -156,6 +177,29 @@ public class EstudianteDAO extends UsuarioDAO{
 			throw new PersistenceException(sqlEx.getMessage()); 
 		}
 	}
+
+	public Estudiante checkLogin(String usuario, String contraseña) throws PersistenceException {
+		try (ResultSet rs = PersistenceManagerDAO.getConnection().createStatement().executeQuery(String.format("select us.* from public.usuario as us join public.login as lo on lo.nombre_usuario = us.login \n"
+				+ "where lo.nombre_usuario='%s' and lo.contraseña='%s'", usuario, contraseña))) {
+			Estudiante user = new Estudiante();
+			if (rs.next()) {
+				user.setNombre(rs.getString("nombre"));
+				user.setEdad(rs.getInt("edad"));
+				user.setIdentificacion(rs.getInt("id"));
+				user.setTipo(rs.getString("tipo_id").charAt(0));
+				user.setCorreo(rs.getString("correo"));
+				user.setNombreUsuario(rs.getString("login"));
+			} else {
+				throw new PersistenceException("Usuario no encontrado");
+			}
+
+			return user;
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		}
+		
+	}
+
 	
 	
 }

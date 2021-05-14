@@ -5,12 +5,8 @@ import org.springframework.stereotype.Component;
 
 import edu.eci.ecihorarios.services.security.SecurityServices;
 
-@Component
+@Component("security-worker")
 public class SecurityWorker implements SecurityServices {
-
-	public SecurityWorker() {
-		// TODO Auto-generated constructor stub
-	}
 
 	@Override
 	public String encryptData(String data) {

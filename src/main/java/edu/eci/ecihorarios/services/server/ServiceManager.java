@@ -5,9 +5,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import org.springframework.stereotype.Service;
+
 import edu.eci.ecihorarios.services.persistence.LoadBalancer;
 import edu.eci.ecihorarios.services.server.worker.ServiceWorker;
 
+@Service
 public class ServiceManager {
 
 	private static ServiceManager serv = new ServiceManager();
@@ -21,6 +24,7 @@ public class ServiceManager {
 	private Random selector;
 	
 	private ServiceManager() {
+		selector = new Random();
 		workers = Collections.synchronizedList(new ArrayList<ServiceWorker>());
 		for (int i=0; i<LoadBalancer.getManagersAmount(); i++) {
 			workers.add(new ServiceWorker());
