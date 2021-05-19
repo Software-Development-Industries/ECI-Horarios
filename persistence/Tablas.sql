@@ -113,17 +113,21 @@ create table Inscritos (
 create table Plan_Estudio (
 	id int,
 	creditos_totales int,
+	carrera int,
 	
-	primary key (id)
+	primary key (id, carrera),
+	foreign key (carrera) references Area_Encargada (codigo)
 );
 
 create table Plan_Estudio_Estudiante (
 	estudiante_id int,
 	estudiante_tipo_id char,
 	plan_id int not null,
+	plan_carrera int not null,
 	
-	primary key (estudiante_id, estudiante_tipo_id, plan_id),
-	foreign key (estudiante_id, estudiante_tipo_id) references Estudiante (id, tipo_id)
+	primary key (estudiante_id, estudiante_tipo_id, plan_id, plan_carrera),
+	foreign key (estudiante_id, estudiante_tipo_id) references Estudiante (id, tipo_id),
+	foreign key (plan_id, plan_carrera) references Plan_Estudio (id, carrera)
 );
 
 create table Registro_Materias (
@@ -139,10 +143,11 @@ create table Registro_Materias (
 
 create table Plan_Materia (
 	plan_id int,
+	plan_carrera int,
 	materia_id char(4),
 
 	primary key (plan_id, materia_id),
-	foreign key (plan_id) references Plan_Estudio (id),
+	foreign key (plan_id, plan_carrera) references Plan_Estudio (id, carrera),
 	foreign key (materia_id) references Materia (sigla)
 );
 

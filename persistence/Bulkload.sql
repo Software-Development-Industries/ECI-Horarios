@@ -125,36 +125,53 @@ insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_mat
 insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Mi', '16:00', '17:30', 1, 'AREP');
 insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Lu', '16:00', '17:30', 2, 'AREP');
 insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Ju', '16:00', '17:30', 2, 'AREP');
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
-insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ();
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Ma', '14:30', '17:30', 1, 'ARSW');
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Vi', '07:00', '10:00', 2, 'ARSW');
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Ma', '14:30', '16:00', 1, 'MATD');
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Vi', '14:30', '16:00', 1, 'MATD');
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Ma', '13:00', '14:30', 2, 'MATD');
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Ju', '13:00', '14:30', 2, 'MATD');
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Lu', '13:00', '16:00', 1, 'AUPN');
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Ju', '07:00', '10:00', 2, 'AUPN');
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Lu', '17:30', '19:00', 1, 'CVDS');
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Vi', '17:30', '19:00', 1, 'CVDS');
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Lu', '08:30', '10:00', 2, 'CVDS');
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Vi', '08:30', '10:00', 2, 'CVDS');
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Vi', '10:00', '13:00', 1, 'POOB');
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Sa', '10:00', '13:00', 2, 'POOB');
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Sa', '10:00', '13:00', 1, 'MBDA');
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Lu', '07:00', '08:30', 1, 'LCAT');
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Ju', '07:00', '08:30', 1, 'LCAT');
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Ma', '07:00', '08:30', 2, 'LCAT');
+insert into public.fecha (dia, hora_inicio, hora_fin, grupo_numero_id, grupo_materia_id) values ('Sa', '07:00', '08:30', 2, 'LCAT');
 
 
+---- Plan Estudio
 
+insert into public.plan_estudio (id, creditos_totales, carrera) values (14, 158, 120067);
 
+---- Plan Materia
 
+insert into public.plan_materia (plan_id, plan_carrera, materia_id) values (14, 120067, 'AYPR');
+insert into public.plan_materia (plan_id, plan_carrera, materia_id) values (14, 120067, 'AYED');
+insert into public.plan_materia (plan_id, plan_carrera, materia_id) values (14, 120067, 'POOB');
+insert into public.plan_materia (plan_id, plan_carrera, materia_id) values (14, 120067, 'MBDA');
+insert into public.plan_materia (plan_id, plan_carrera, materia_id) values (14, 120067, 'ACSO');
+insert into public.plan_materia (plan_id, plan_carrera, materia_id) values (14, 120067, 'RECO');
+insert into public.plan_materia (plan_id, plan_carrera, materia_id) values (14, 120067, 'SPTI');
+insert into public.plan_materia (plan_id, plan_carrera, materia_id) values (14, 120067, 'CVDS');
+insert into public.plan_materia (plan_id, plan_carrera, materia_id) values (14, 120067, 'ARSW');
+insert into public.plan_materia (plan_id, plan_carrera, materia_id) values (14, 120067, 'AREP');
+insert into public.plan_materia (plan_id, plan_carrera, materia_id) values (14, 120067, 'TSOR');
+insert into public.plan_materia (plan_id, plan_carrera, materia_id) values (14, 120067, 'AUPN');
+insert into public.plan_materia (plan_id, plan_carrera, materia_id) values (14, 120067, 'LCAT');
+insert into public.plan_materia (plan_id, plan_carrera, materia_id) values (14, 120067, 'MATD');
+insert into public.plan_materia (plan_id, plan_carrera, materia_id) values (14, 120067, 'TPRO');
 
+---- Horario
 
-select * from public.fecha;
-delete from public.fecha; 
+insert into public.horario (semestre, tipo, creditos, inscripcion_id, estudiante_id) values (2, 'P', 0, 1, 1014297320);
+insert into public.horario (semestre, tipo, creditos, inscripcion_id, estudiante_id) values (1, 'P', 0, 1, 173934652);
 
 
 
