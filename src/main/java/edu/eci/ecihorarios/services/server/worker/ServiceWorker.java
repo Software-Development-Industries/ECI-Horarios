@@ -36,6 +36,7 @@ public class ServiceWorker {
 		try {
 			return (Estudiante) LoadBalancer.getNextManager().getStudentByUsername(username);
 		} catch (PersistenceException perEx) {
+			perEx.printStackTrace();
 			throw new AppException("No se ha encontrado el usuario");
 		}
 	}

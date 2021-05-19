@@ -9,25 +9,42 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
 		<title>ECI Horarios</title>
-	</head>
-	<body>
 		<script>
-			if (!main.verifyLogin()) {
-				alert("INVALID ACCESS");
-				window.location.replace("/");
+			window.onload = function () {
+				if (!main.verifyLogin()) {
+					alert("INVALID ACCESS");
+					window.location.replace("/");
+				} else {
+					main.getStudentData();
+				}
 			}
 		</script>
+	</head>
+	<body>
+		
 		<div class="content">
 			<div class="navbar">
 			  <a href="/">Inicio</a>
-			  <a href="#">Inscripción</a>
-			  <a href="#">Consultar Materias</a>
 			  <a href="#" onclick="main.logout()">Salir</a>
 			</div>
 			
 			<!-- Page content -->
 			<div class="main">
-			  Hello There!
+			  <div class="info">
+				<div class="banner">
+				</div>
+				<div class="perfil">
+					<button class="perfil-button" onclick="main.displayInfo()">Información de Perfil</button>
+					<div class="perfil-info">
+					</div>
+				</div>
+			  </div>
+				<hr/>
+			  <div class="menu">
+				<button class="menu-button">Ver Registro</button>
+				<button class="menu-button">Realizar Preinscripción</button>
+				<button class="menu-button">Realizar Inscripción Definitiva</button>
+			  </div>
 			</div>
 		</div>
 		

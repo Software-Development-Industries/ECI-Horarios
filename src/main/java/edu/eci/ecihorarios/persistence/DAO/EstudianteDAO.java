@@ -52,7 +52,7 @@ public class EstudianteDAO extends UsuarioDAO <Estudiante>{
 	
 	public Estudiante getByUsername(String username) throws PersistenceException {
 		try (PreparedStatement st = PersistenceManagerDAO.getConnection().prepareStatement("select us.* from public.usuario us join public.estudiante est "
-				+ "on us.id = est.id where us.nombre_usuario = ?")) {
+				+ "on us.id = est.id where us.login = ?")) {
 			st.setString(1, username);
 			
 			ResultSet rs = st.executeQuery();
