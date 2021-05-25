@@ -10,7 +10,6 @@ import edu.eci.ecihorarios.exception.persistence.PersistenceException;
 import edu.eci.ecihorarios.model.bean.Area;
 import edu.eci.ecihorarios.model.bean.Estudiante;
 import edu.eci.ecihorarios.model.bean.Materia;
-import edu.eci.ecihorarios.model.bean.PlanEstudio;
 import edu.eci.ecihorarios.model.bean.Usuario;
 
 public class EstudianteDAO extends UsuarioDAO <Estudiante>{
@@ -105,36 +104,6 @@ public class EstudianteDAO extends UsuarioDAO <Estudiante>{
 		}
 	}
 	
-	
-	public void agregarPlan(Estudiante estudiante, PlanEstudio plan) throws PersistenceException {
-		try (PreparedStatement st = PersistenceManagerDAO.getConnection().prepareStatement("insert into public.plan_estudio_estudiante (estudiante_id, estudiante_tipo_id, plan_id) "
-				+ "values (?,?,?)")) {
-			st.setInt(1, estudiante.getIdentificacion());
-			st.setString(2, String.valueOf(estudiante.getTipo()));
-			st.setInt(3, plan.getId());
-			st.executeUpdate();
-		} catch (SQLException sqlEx) {
-			throw new PersistenceException(sqlEx.getMessage());
-		}
-	}
-	
-	public void agregarPlan(Estudiante estudiante, List<PlanEstudio> planes) throws PersistenceException {
-		try (PreparedStatement st = PersistenceManagerDAO.getConnection().prepareStatement("insert into public.plan_estudio_estudiante (estudiante_id, estudiante_tipo_id, plan_id) "
-				+ "values (?,?,?)")) {
-			
-			for (PlanEstudio plan: planes) {
-				st.setInt(1, estudiante.getIdentificacion());
-				st.setString(2, String.valueOf(estudiante.getTipo()));
-				st.setInt(3, plan.getId());
-				st.addBatch();
-			}
-			
-			st.executeBatch();
-		} catch (SQLException sqlEx) {
-			throw new PersistenceException(sqlEx.getMessage());
-		}
-	}
-	
 	public void registrarMaterias(Estudiante estudiante, List<Materia> materias) throws PersistenceException {
 		try (PreparedStatement st = PersistenceManagerDAO.getConnection().prepareStatement("insert into public.registro_materias (estudiante_id, tipo_id_est, materia_id, superada)"
 				+ "values (?,?,?,?)")) {
@@ -161,13 +130,13 @@ public class EstudianteDAO extends UsuarioDAO <Estudiante>{
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				materias.add(new Materia(
-						rs.getString("profesor"),
 						rs.getString("nombre"),
 						rs.getString("sigla"),
 						rs.getString("descripcion"),
 						rs.getInt("creditos"),
 						new Area(rs.getInt("codigo"), rs.getString("nombre_area")),
 						rs.getBoolean("superada"),
+						null,
 						null
 					));
 			}

@@ -12,7 +12,7 @@ main = (function() {
 
 		if (usuario == null){
 			await fetch(
-				url+"/app/get-student-data/"+email,
+				url+"/app/user/"+email + "/data",
 				{
 					method: "GET",
 					headers: {
@@ -48,6 +48,35 @@ main = (function() {
 		}
 	}
 	
+	var _getStudentPlans = async function (email) {
+		var planes = JSON.parse(sessionStorage.getItem("currentUserPlans"));
+		
+		if (planes == null) {
+			
+			await fetch (
+				url + "/app/user/" + email + "/preinscripciones", 
+				{
+					method: "GET",
+					headers: {
+						"Content-type": "application/json; charset=UTF-8"
+					}
+				}
+			)
+			.then(response => response.json())
+			.then(data => {
+				planes = data;
+				return data;
+			})
+			
+			if (planes) {
+				sessionStorage.setItem("currentUserPlans", JSON.stringify(planes));
+			}
+		}
+		
+		return planes;
+	}
+	
+		
 	return {
 		
 		verifyLogin: function () {
@@ -73,12 +102,40 @@ main = (function() {
 									`<li>Edad: ${user["edad"]}</li>` +
 									`<li>ID: ${user["identificacion"]}</li>` +
 									`<li>Correo: ${user["correo"]}</li>`;
-					$(".perfil-info").html("<ul>"+userData+"</ul>")
+					$(".perfil-info").html("<ul>"+userData+"</ul>");
 				}
 			})
 		},
 		
-		displayInfo: _displayInfo
+		displayInfo: _displayInfo,
+		
+		getStudentPlans: function () {
+			_getStudentPlans(sessionStorage.getItem("currentUser"))
+			.then((response) => {
+				if (response) {
+					let plans = JSON.parse(sessionStorage.getItem("currentUserPlans"));
+					let userPlans = "Default";
+					if (plans != null && plans.length > 0) {
+						userPlans = "";
+						plans.forEach(inscripcion => {
+							userPlans += JSON.stringify(inscripcion);
+							userPlans += "<br>";
+						});
+					} else {
+						userPlans = "No tiene preinscripciones registradas hasta el momento.";
+					}
+					
+					let registroVista = $("#registro-view");
+					registroVista.prepend("<p>"+userPlans+"</p>");
+					registroVista[0].showModal();
+				}
+				
+			})
+			$("#close-registro-view").on('click', function () {
+				$("#registro-view p").remove();
+				$("#registro-view")[0].close();
+			});
+		}
 		
 	}
 	

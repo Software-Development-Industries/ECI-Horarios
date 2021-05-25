@@ -10,7 +10,6 @@ import lombok.Setter;
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class Materia {
 
-	private String profesor;
 	private String nombre;
 	private String sigla;
 	private String descripcion;
@@ -19,5 +18,5 @@ public class Materia {
 	private boolean aprobada;
 	
 	private List<Materia> requisitos;
-	
+	private Grupo grupo;
 }

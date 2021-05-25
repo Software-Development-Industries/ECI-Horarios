@@ -104,6 +104,7 @@ create table Inscritos (
 	estudiante_tipo_id char,
 	grupo_numero_id int,
 	grupo_materia_id char(4),
+	tipo char,
 	
 	primary key (estudiante_id, estudiante_tipo_id, grupo_numero_id, grupo_materia_id),
 	foreign key (estudiante_id, estudiante_tipo_id) references Estudiante (id, tipo_id),

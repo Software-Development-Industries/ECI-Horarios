@@ -16,10 +16,11 @@ import edu.eci.ecihorarios.exception.app.AppException;
 import edu.eci.ecihorarios.services.server.ServiceManager;
 
 @RestController
+@RequestMapping("/")
 public class MainController {
 
 	
-	@RequestMapping(value="/app/student-login", 
+	@RequestMapping(value="/app/user/login", 
 					method=RequestMethod.POST,
 					consumes="application/json")
 	public ResponseEntity<?> checkLogin(@RequestBody String req) {
@@ -35,7 +36,7 @@ public class MainController {
 	}
 	
 	
-	@RequestMapping(value="/app/get-student-data/{username}",
+	@RequestMapping(value="/app/user/{username}/data",
 					method=RequestMethod.GET)
 	public ResponseEntity<?> getStudentByUsername(@PathVariable String username) {
 		try {

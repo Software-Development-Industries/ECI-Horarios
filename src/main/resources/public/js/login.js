@@ -7,7 +7,7 @@ login = (function (){
 	var _studentLogin = async function(email, pass) {
 		let isLoggued = false;
 		await fetch(
-            url + "/app/student-login",
+            url + "/app/user/login",
             {
                 method: "POST",
                 body: JSON.stringify({

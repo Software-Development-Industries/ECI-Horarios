@@ -41,9 +41,14 @@
 			  </div>
 				<hr/>
 			  <div class="menu">
-				<button class="menu-button">Ver Registro</button>
-				<button class="menu-button">Realizar Preinscripción</button>
-				<button class="menu-button">Realizar Inscripción Definitiva</button>
+				<button class="menu-button" onclick="main.getStudentPlans()">Ver Registro</button>
+				<button class="menu-button">Preinscripción</button>
+				<button class="menu-button">Inscripción Definitiva</button>
+			  </div>
+			  <div class="registro">
+				<dialog id="registro-view">
+					<button id="close-registro-view">Aceptar</button>
+				</dialog>
 			  </div>
 			</div>
 		</div>

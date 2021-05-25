@@ -173,6 +173,16 @@ insert into public.plan_materia (plan_id, plan_carrera, materia_id) values (14, 
 insert into public.horario (semestre, tipo, creditos, inscripcion_id, estudiante_id) values (2, 'P', 0, 1, 1014297320);
 insert into public.horario (semestre, tipo, creditos, inscripcion_id, estudiante_id) values (1, 'P', 0, 1, 173934652);
 
+---- Horario_Materia
+
+insert into public.horario_materia (materia_id, horario_inscripcion_id, horario_estudiante_id) values ('LCAT', 1, 1014297320);
+insert into public.horario_materia (materia_id, horario_inscripcion_id, horario_estudiante_id) values ('AYPR', 1, 1014297320);
+
+
+---- Inscritos
+insert into public.inscritos (estudiante_id, estudiante_tipo_id, grupo_numero_id, grupo_materia_id, tipo) values (1014297320, 'C', 1, 'AYPR', 'P');
+insert into public.inscritos (estudiante_id, estudiante_tipo_id, grupo_numero_id, grupo_materia_id, tipo) values (1014297320, 'C', 1, 'LCAT', 'P');
+
 
 
 

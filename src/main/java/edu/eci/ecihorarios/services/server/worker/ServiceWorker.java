@@ -1,5 +1,7 @@
 package edu.eci.ecihorarios.services.server.worker;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 import edu.eci.ecihorarios.exception.app.AppException;
 import edu.eci.ecihorarios.exception.persistence.PersistenceException;
 import edu.eci.ecihorarios.model.bean.Estudiante;
+import edu.eci.ecihorarios.model.bean.Inscripcion;
 import edu.eci.ecihorarios.model.bean.Usuario;
 import edu.eci.ecihorarios.services.persistence.LoadBalancer;
 import edu.eci.ecihorarios.services.security.SecurityServices;
@@ -36,8 +39,15 @@ public class ServiceWorker {
 		try {
 			return (Estudiante) LoadBalancer.getNextManager().getStudentByUsername(username);
 		} catch (PersistenceException perEx) {
-			perEx.printStackTrace();
 			throw new AppException("No se ha encontrado el usuario");
+		}
+	}
+	
+	public List<Inscripcion> getStudentPlans(String username) throws AppException {
+		try {
+			return LoadBalancer.getNextManager().getStudentPlans(username);
+		} catch (PersistenceException perEx) {
+			throw new AppException("Error en la peticion: "+ perEx.getMessage());
 		}
 	}
 	
