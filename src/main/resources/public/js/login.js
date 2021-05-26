@@ -2,7 +2,7 @@ login = (function (){
 	
 	
 	var port = 80;
-	var url = "https://eci-horarios.herokuapp.com";
+	var url = "http://localhost"//"https://eci-horarios.herokuapp.com";
 	
 	var _studentLogin = async function(email, pass) {
 		let isLoggued = false;

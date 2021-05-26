@@ -1,7 +1,7 @@
 main = (function() {
 	
 	var port = 80;
-	var url = "https://eci-horarios.herokuapp.com";
+	var url = "http://localhost"//"https://eci-horarios.herokuapp.com";
 	
 	var _verifyLogin = function () {
 		return sessionStorage.getItem("loggued") === String(true); 

@@ -1,7 +1,7 @@
 preinscripcion = (function () {
 	
 	var port = 80;
-	var url = "https://eci-horarios.herokuapp.com";
+	var url = "http://localhost"//"https://eci-horarios.herokuapp.com";
 	var modify_button = "<button>Modificar preinscripcion</button>";
 	var delete_button = "<button style=\"color: red\">Elminiar preinscripción</button>";
 	
@@ -96,6 +96,29 @@ preinscripcion = (function () {
 		return materia;
 	}
 	
+	var _inscribirPlan = async function () {
+		let user = sessionStorage.getItem("currentUser");
+		let resp = null;
+		await fetch(
+			url + "/app/user/" + user + "/preinscribir",
+			{
+				method: "POST",
+				headers: {
+					"Content-type": "application/json; charset=UTF-8"
+				},
+				body: JSON.stringify({
+					user: user,
+					materias: materias
+				})
+			}
+		)
+		.then(data => {
+			resp = data;
+		})
+		
+		return resp;
+	}
+	
 	
 	return {
 		
@@ -183,6 +206,7 @@ preinscripcion = (function () {
 			}
 			
 			inscripcionHolder.cancelar();
+			$("#general-info").html(`Créditos: ${inscripcionHolder.cantidadCreditos()}`);
 		},
 		
 		nuevaMateria: function() {
@@ -196,7 +220,13 @@ preinscripcion = (function () {
 		},
 		
 		inscribirPlan: function() {
-			
+			_inscribirPlan()
+			.then(response => {
+				if (response) {
+					cancelNewPlan();
+					alert("Preinscripcion realizada con éxito");
+				}
+			})
 		}
 		
 	};
