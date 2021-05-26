@@ -1,7 +1,7 @@
 main = (function() {
 	
 	var port = 80;
-	var url = "http://localhost:"+port;
+	var url = "localhost:"+port;
 	
 	var _verifyLogin = function () {
 		return sessionStorage.getItem("loggued") === String(true); 
