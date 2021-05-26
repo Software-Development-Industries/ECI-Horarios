@@ -85,7 +85,7 @@ main = (function() {
 		
 		logout: function () {
 			if (_verifyLogin()) {
-				sessionStorage.setItem("loggued", false);
+				sessionStorage.clear();
 				alert("Ha salido exitosamente de la cuenta!");
 				window.location.href = "/login.html"
 			}
