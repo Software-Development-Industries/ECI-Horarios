@@ -1,0 +1,43 @@
+.navbar {
+  overflow: hidden;
+  background-color: #FF3232;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+
+.main {
+	margin: 60px auto auto;
+}
+
+.nueva-preinscripcion {
+	display: none;
+}
+
+.modificar {
+	overflow: scroll;
+}
+
+.modificar table {
+	border: 2px solid black;
+}
+
+.modificar table td, th {
+	text-align: center;
+	background-color: #E3E3E3;
+}

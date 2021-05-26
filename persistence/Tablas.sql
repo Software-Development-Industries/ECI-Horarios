@@ -38,22 +38,12 @@ create table Inscripcion (
 	MAX_CREDITOS int,
 	id int,
 	tipo char,
-	fecha_inicio date,
-	fecha_final date,
+	fecha_inicio timestamp,
+	fecha_final timestamp,
 	estudiante_id int,
 	estudiante_tipo_id char,
 	
-	primary key (id),
-	foreign key (estudiante_id, estudiante_tipo_id) references Estudiante (id, tipo_id)
-);
-
-create table Preinscripcion (
-	id int,
-	estudiante_id int,
-	estudiante_tipo_id char,
-	
-	primary key (id),
-	foreign key (id) references Inscripcion (id),
+	primary key (id, estudiante_id),
 	foreign key (estudiante_id, estudiante_tipo_id) references Estudiante (id, tipo_id)
 );
 
@@ -69,7 +59,6 @@ create table Administrador (
 );
 
 create table Materia (
-	profesor varchar,
 	nombre varchar,
 	sigla char(4),
 	descripcion varchar,
@@ -93,14 +82,16 @@ create table Grupo (
 	cupo int,
 	numero_id int,
 	materia_id char(4) not null,
+	profesor varchar,
 	
 	primary key (numero_id, materia_id),
 	foreign key (materia_id) references Materia (sigla)
 );
 
 create table Fecha (
-	dia char(1),
-	hora time,
+	dia char(2),
+	hora_inicio time,
+	hora_fin time,
 	grupo_numero_id int,
 	grupo_materia_id char(4),
 	
@@ -113,6 +104,7 @@ create table Inscritos (
 	estudiante_tipo_id char,
 	grupo_numero_id int,
 	grupo_materia_id char(4),
+	tipo char,
 	
 	primary key (estudiante_id, estudiante_tipo_id, grupo_numero_id, grupo_materia_id),
 	foreign key (estudiante_id, estudiante_tipo_id) references Estudiante (id, tipo_id),
@@ -122,17 +114,21 @@ create table Inscritos (
 create table Plan_Estudio (
 	id int,
 	creditos_totales int,
+	carrera int,
 	
-	primary key (id)
+	primary key (id, carrera),
+	foreign key (carrera) references Area_Encargada (codigo)
 );
 
 create table Plan_Estudio_Estudiante (
 	estudiante_id int,
 	estudiante_tipo_id char,
 	plan_id int not null,
+	plan_carrera int not null,
 	
-	primary key (estudiante_id, estudiante_tipo_id, plan_id),
-	foreign key (estudiante_id, estudiante_tipo_id) references Estudiante (id, tipo_id)
+	primary key (estudiante_id, estudiante_tipo_id, plan_id, plan_carrera),
+	foreign key (estudiante_id, estudiante_tipo_id) references Estudiante (id, tipo_id),
+	foreign key (plan_id, plan_carrera) references Plan_Estudio (id, carrera)
 );
 
 create table Registro_Materias (
@@ -148,32 +144,33 @@ create table Registro_Materias (
 
 create table Plan_Materia (
 	plan_id int,
+	plan_carrera int,
 	materia_id char(4),
 
 	primary key (plan_id, materia_id),
-	foreign key (plan_id) references Plan_Estudio (id),
+	foreign key (plan_id, plan_carrera) references Plan_Estudio (id, carrera),
 	foreign key (materia_id) references Materia (sigla)
 );
 
 create table Horario (
-	numero_horario int,
 	semestre int,
 	tipo char,
 	creditos int,
 	inscripcion_id int not null,
+	estudiante_id int not null,
 	
-	primary key (numero_horario, inscripcion_id),
-	foreign key (inscripcion_id) references Inscripcion (id)
+	primary key (inscripcion_id, estudiante_id),
+	foreign key (inscripcion_id, estudiante_id) references Inscripcion (id, estudiante_id)
 );
 
 create table Horario_Materia (
 	materia_id char(4) not null,
-	horario_numero_id int,
 	horario_inscripcion_id int,
+	horario_estudiante_id int,
 	
-	primary key (materia_id, horario_numero_id, horario_inscripcion_id),
+	primary key (materia_id, horario_inscripcion_id, horario_estudiante_id),
 	foreign key (materia_id) references Materia (sigla),
-	foreign key (horario_numero_id, horario_inscripcion_id) references Horario (numero_horario, inscripcion_id)
+	foreign key (horario_inscripcion_id, horario_estudiante_id) references Horario (inscripcion_id, estudiante_id)
 );
 
 

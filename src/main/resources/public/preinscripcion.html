@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="icon" type="image/jpg" href="./image/favicon.ico"/>
+		<link rel="stylesheet" href="css/preinscripcion.css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/preinscripcion.js"></script>
+		<title>ECI Horarios</title>
+		<script>
+			window.onload = function () {
+				if (!preinscripcion.verifyLogin()) {
+					alert("INVALID ACCESS");
+					window.location.replace("/");
+				} else {
+					preinscripcion.prepareInitialData();
+				}
+			}
+		</script>
+	</head>
+	<body>
+		
+		<div class="content">
+			<div class="navbar">
+			  <a href="/">Inicio</a>
+			  <a href="#" onclick="preinscripcion.logout()">Salir</a>
+			</div>
+			
+			<!-- Page content -->
+			<div class="main">
+				<div class="nueva">
+					<button onclick="preinscripcion.displayNewPlan()">Nueva Preinscripción</button>
+					<div class="nueva-preinscripcion">
+						<p id="general-info">Creditos: 0
+						</p>
+						<div class="materia-selector">
+							<input type="text" id="materia" placeholder="Materia" required="true"/>
+							<input type="text" id="grupo" placeholder="Grupo" required="true"/>
+							<input type="submit" value="Agregar" onclick="preinscripcion.nuevaMateria()"/>
+						</div>
+						<div class="search-box">
+							<button>Buscar Materia</button>
+						</div>
+						<button onclick="preinscripcion.cancelNewPlan()">Cancelar</button>
+						<button onclick="preinscripcion.inscribirPlan()">Enviar</button>
+					</div>
+				</div>
+				<hr/>
+				<div class="modificar">
+				</div>
+			</div>
+		</div>
+		
+	</body>
+
+</html>
