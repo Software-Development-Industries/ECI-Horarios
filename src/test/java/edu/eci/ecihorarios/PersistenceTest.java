@@ -12,14 +12,6 @@ import edu.eci.ecihorarios.persistence.DAO.PersistenceManagerDAO;
 
 public class PersistenceTest {
 
-	@Test
-	public void verificarLogin() {
-		PersistenceManager<Estudiante> persistenceMg = new PersistenceManagerDAO();
-		try {
-			assertEquals(persistenceMg.studentLogin("eduard.arias", "eduard_lol1234").getIdentificacion(), 1234);
-		} catch (PersistenceException perEx) {
-			fail(perEx.getMessage());
-		}
-	}
+	
 
 }
