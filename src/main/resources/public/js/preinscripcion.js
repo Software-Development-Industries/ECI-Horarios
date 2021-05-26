@@ -1,7 +1,7 @@
 preinscripcion = (function () {
 	
 	var port = 80;
-	var url = "localhost:"+port;
+	var url = "https://localhost:"+port;
 	var modify_button = "<button>Modificar preinscripcion</button>";
 	var delete_button = "<button style=\"color: red\">Elminiar preinscripción</button>";
 	

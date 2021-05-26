@@ -2,7 +2,7 @@ login = (function (){
 	
 	
 	var port = 80;
-	var url = "localhost:"+port;
+	var url = "https://localhost:"+port;
 	
 	var _studentLogin = async function(email, pass) {
 		let isLoggued = false;
