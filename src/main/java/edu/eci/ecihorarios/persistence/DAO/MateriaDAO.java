@@ -1,7 +1,9 @@
 package edu.eci.ecihorarios.persistence.DAO;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.eci.ecihorarios.exception.persistence.PersistenceException;
@@ -41,6 +43,46 @@ public class MateriaDAO {
 			st.executeBatch();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
+		}
+	}
+	
+	public Materia consultar(String sigla) throws PersistenceException {
+		try (ResultSet rs = PersistenceManagerDAO.getConnection().createStatement().executeQuery(String.format("select * \n"
+				+ "from public.materia as mat "
+				+ "where mat.sigla = '%s'", sigla))){
+			
+			Materia mat = new Materia();
+			if (rs.next()) {
+				mat.setNombre(rs.getString("nombre"));
+				mat.setSigla(sigla);
+				mat.setDescripcion(rs.getString("descripcion"));
+				mat.setCreditos(rs.getInt("creditos"));
+				
+				ResultSet rt = PersistenceManagerDAO.getConnection().createStatement().executeQuery(String.format("select mat.*\n"
+						+ "from public.requisito as req join public.materia as mat on req.requisito_id = mat.sigla\n"
+						+ "where req.materia_id = '%s'", sigla));
+				
+				List<Materia> requisitos = new ArrayList<Materia>();
+				
+				while (rt.next()) {
+					Materia req = new Materia();
+					req.setNombre(rs.getString("nombre"));
+					req.setSigla(sigla);
+					req.setDescripcion(rs.getString("descripcion"));
+					req.setCreditos(rs.getInt("creditos"));
+					
+					requisitos.add(req);
+				}
+				
+				mat.setRequisitos(requisitos);
+				
+				
+			}
+			
+			return mat;
+			
+		} catch (SQLException sqlEx) {
+			throw new PersistenceException(sqlEx.getMessage());
 		}
 	}
 	

@@ -46,10 +46,10 @@ login = (function (){
 				window.location.href = url+"/main.html";
 			} else {
 				_studentLogin($("#email").val(), $("#pass").val()).then((isLoggued) => {
+					console.log($("#email").val(), $("#pass").val());
 					if (isLoggued) {
 						// Make it like this so can be optimized in the future
 						sessionStorage.setItem("loggued", true);
-						alert("YOU ARE LOGGUED NOW");
 						window.location.href = url+"/main.html";
 					} else {
 						alert("Usuario o contraseña no válidos");

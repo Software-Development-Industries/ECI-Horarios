@@ -1,5 +1,6 @@
 package edu.eci.ecihorarios.persistence.DAO;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import java.util.Map;
 
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
+
+import com.google.gson.JsonObject;
 
 import java.time.LocalTime;
 
@@ -41,7 +44,8 @@ public class InscripcionDAO {
 													+ "from public.horario_materia as horMat join public.materia as mat on horMat.materia_id = mat.sigla "
 													+ "join public.grupo as gr on gr.materia_id = mat.sigla "
 													+ "join public.inscritos as insc on insc.grupo_materia_id = gr.materia_id and insc.grupo_numero_id = gr.numero_id "
-													+ "where horMat.horario_inscripcion_id = %s", rs.getInt("id")));
+													+ "join public.usuario as us on insc.estudiante_id = us.id "
+													+ "where horMat.horario_inscripcion_id = %s and us.login = '%s'", rs.getInt("id"), username));
 				
 				while (rt.next()) {
 					Materia mat = new Materia();
@@ -77,6 +81,14 @@ public class InscripcionDAO {
 			
 			return inscripciones;
 			
+		} catch (SQLException sqlEx) {
+			throw new PersistenceException(sqlEx.getMessage());
+		}
+	}
+	
+	public void preinscribir(JsonObject inscripcion) throws PersistenceException {
+		try {
+			PreparedStatement st = PersistenceManagerDAO.getConnection().prepareStatement("");
 		} catch (SQLException sqlEx) {
 			throw new PersistenceException(sqlEx.getMessage());
 		}

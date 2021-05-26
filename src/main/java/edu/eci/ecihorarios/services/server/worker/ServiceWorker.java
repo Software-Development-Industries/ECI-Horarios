@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.JsonObject;
+
 import edu.eci.ecihorarios.exception.app.AppException;
 import edu.eci.ecihorarios.exception.persistence.PersistenceException;
 import edu.eci.ecihorarios.model.bean.Estudiante;
 import edu.eci.ecihorarios.model.bean.Inscripcion;
+import edu.eci.ecihorarios.model.bean.Materia;
 import edu.eci.ecihorarios.model.bean.Usuario;
 import edu.eci.ecihorarios.services.persistence.LoadBalancer;
 import edu.eci.ecihorarios.services.security.SecurityServices;
@@ -48,6 +51,22 @@ public class ServiceWorker {
 			return LoadBalancer.getNextManager().getStudentPlans(username);
 		} catch (PersistenceException perEx) {
 			throw new AppException("Error en la peticion: "+ perEx.getMessage());
+		}
+	}
+	
+	public Materia getInfoMateria(String sigla) throws AppException {
+		try {
+			return LoadBalancer.getNextManager().getInfoMateria(sigla);
+		} catch (PersistenceException perEx) {
+			throw new AppException("La materia solicitada no existe");
+		}
+	}
+	
+	public void preinscribir(JsonObject inscripcion) throws AppException {
+		try {
+			LoadBalancer.getNextManager().preinscribir(inscripcion);
+		} catch (PersistenceException perEx) {
+			throw new AppException("No se pudo realizar la inscripción -> "+perEx.getMessage());
 		}
 	}
 	

@@ -1,52 +1,51 @@
-main = (function() {
+preinscripcion = (function () {
 	
 	var port = 80;
 	var url = "http://localhost:"+port;
+	var modify_button = "<button>Modificar preinscripcion</button>";
+	var delete_button = "<button style=\"color: red\">Elminiar preinscripción</button>";
+	
+	var materias = []
+	
+	var inscripcionHolder = {
+		
+		addMateria: function (sigla, grupo, creditos) {
+			if (materias.find(element => element["sigla"] === sigla && element["grupo"] === grupo) == undefined){
+				materias.push({
+					sigla: sigla,
+					grupo: grupo,
+					creditos: creditos			
+				});
+			} else {
+				return false;
+			}
+			
+			return true;
+		},
+		
+		quitarMateria: function (sigla, grupo) {
+			var index = materias.findIndex(element => element["sigla"] === sigla && element["grupo"] === grupo); 
+			materias.splice(index, 1);
+		},
+		
+		cantidadCreditos: function() {
+			var totalSum = 0;
+			materias.forEach(element => {
+				totalSum += element["creditos"];
+			});
+			return totalSum;
+		},
+		
+		cancelar: function() {
+			materias = [];
+		}
+		
+	}
 	
 	var _verifyLogin = function () {
 		return sessionStorage.getItem("loggued") === String(true); 
 	}
 	
-	var _getStudentData = async function (email) {
-		var usuario = JSON.parse(sessionStorage.getItem("currentUserData"));
-
-		if (usuario == null){
-			await fetch(
-				url+"/app/user/"+email + "/data",
-				{
-					method: "GET",
-					headers: {
-	      				"Content-type": "application/json; charset=UTF-8"
-	   				}
-				}
-			)
-			.then((response) => response.json())
-			.then((data) => {
-				usuario = data;
-				return data;
-			})
-
-						
-			if (usuario) {
-				sessionStorage.setItem("currentUserData", JSON.stringify(usuario));
-				return true;
-			}
-			
-			return false;
-		}
-		
-		return true;
-		
-	}
-	
-	var _displayInfo = function () {
-		let display = $(".perfil-info").css("display");
-		if (display == "none") {
-			$(".perfil-info").css("display", "block");
-		} else {
-			$(".perfil-info").css("display", "none");
-		}
-	}
 	
 	var _getStudentPlans = async function (email) {
 		var planes = JSON.parse(sessionStorage.getItem("currentUserPlans"));
@@ -76,12 +75,31 @@ main = (function() {
 		return planes;
 	}
 	
+	var _getInfoMateria = async function (sigla) {
+		var materia;
 		
+		await fetch (
+			url + "/app/materia/" + sigla + "/info",
+			{
+				method: "GET",
+				headers: {
+					"Content-type": "application/json; charset=UTF-8"
+				} 
+			}
+		)
+		.then(response => response.json())
+		.then(data => {
+			materia = data;
+			return data;
+		})
+		
+		return materia;
+	}
+	
+	
 	return {
 		
-		verifyLogin: function () {
-			return _verifyLogin();
-		},
+		verifyLogin: _verifyLogin,
 		
 		logout: function () {
 			if (_verifyLogin()) {
@@ -91,25 +109,7 @@ main = (function() {
 			}
 		},
 		
-		getStudentData: function() {
-			_getStudentData(sessionStorage.getItem("currentUser"))
-			.then((response) => {
-				if (response) {
-					let user = JSON.parse(sessionStorage.getItem("currentUserData"));
-					$(".banner").html(`<h1>BIEVENID@ ${user["nombre"].toUpperCase()}</h1>`);
-					
-					let userData = `<li>Nombre: ${user["nombre"]}</li>` +
-									`<li>Edad: ${user["edad"]}</li>` +
-									`<li>ID: ${user["identificacion"]}</li>` +
-									`<li>Correo: ${user["correo"]}</li>`;
-					$(".perfil-info").html("<ul>"+userData+"</ul>");
-				}
-			})
-		},
-		
-		displayInfo: _displayInfo,
-		
-		getStudentPlans: function () {
+		prepareInitialData: function () {
 			_getStudentPlans(sessionStorage.getItem("currentUser"))
 			.then((response) => {
 				if (response) {
@@ -148,6 +148,9 @@ main = (function() {
 									table += tableRow;
 								});
 								
+								table += "<tr><td>"+modify_button;
+								table += delete_button+"</td></tr>";
+								
 								userPlans += table;
 							} else {
 								userPlans += "<p>No tiene Materias registradas para esta preinscripción</p>"
@@ -158,18 +161,45 @@ main = (function() {
 						userPlans = "No tiene preinscripciones registradas hasta el momento.";
 					}
 					
-					let registroVista = $("#registro-view");
-					registroVista.prepend(userPlans);
-					registroVista[0].showModal();
+					$(".modificar").html(userPlans);
 				}
-				
 			})
-			$("#close-registro-view").on('click', function () {
-				$("#registro-view table, p").remove();
-				$("#registro-view")[0].close();
-			});
+		},
+		
+		
+		displayNewPlan: function() {
+			let display = $(".nueva-preinscripcion").css("display");
+			if (display == "none") {
+				$(".nueva-preinscripcion").css("display", "block");
+				$(".modificar").css("display", "none");
+			}
+		},
+		
+		cancelNewPlan: function() {
+			let display = $(".nueva-preinscripcion").css("display");
+			if (display != "none") {
+				$(".nueva-preinscripcion").css("display", "none");
+				$(".modificar").css("display", "block");
+			}
+			
+			inscripcionHolder.cancelar();
+		},
+		
+		nuevaMateria: function() {
+			var sigla = $("#materia").val();
+			var grupo = $("#grupo").val();			
+			_getInfoMateria(sigla)
+			.then(response => {
+				inscripcionHolder.addMateria(sigla, grupo, response.creditos);
+				$("#general-info").html(`Créditos: ${inscripcionHolder.cantidadCreditos()}`);
+			})
+		},
+		
+		inscribirPlan: function() {
+			
 		}
 		
-	}
+	};
+	
 	
 })();
