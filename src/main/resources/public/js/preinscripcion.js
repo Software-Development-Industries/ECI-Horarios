@@ -1,7 +1,7 @@
 preinscripcion = (function () {
 	
 	var port = 80;
-	var url = "http://localhost"//"https://eci-horarios.herokuapp.com";
+	var url = "https://eci-horarios.herokuapp.com";
 	var modify_button = "<button>Modificar preinscripcion</button>";
 	var delete_button = "<button style=\"color: red\">Elminiar preinscripción</button>";
 	
